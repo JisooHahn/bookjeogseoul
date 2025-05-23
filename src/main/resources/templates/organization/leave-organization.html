@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>회원탈퇴 | 북적서울</title>
+        <link
+            rel="shortcut icon"
+            href="/images/common/favicon.ico"
+            type="image/x-icon"
+        />
+        <link
+            rel="stylesheet"
+            href="/css/main/global-settings.css"
+        />
+        <link rel="stylesheet" href="/css/main/header.css" />
+        <link
+            rel="stylesheet"
+            href="/css/organization/leave-organization.css"
+        />
+    </head>
+    <body>
+        <div id="wrap" class="show-top-header">
+            <!-- 헤더 시작 -->
+            <div th:replace="~{main/header :: header-sc}"></div>
+            <!-- 헤더끝 -->
+            <section class="content">
+                <div class="bookjeog-inner">
+                    <div id="backComponent" class="back-component">
+                        <div class="back-wrap line">
+                            <div>
+                                <div class="back">
+                                    <button
+                                        type="button"
+                                        class="close-button"
+                                    ></button>
+                                    <h2>단체회원 탈퇴</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inner-content">
+                        <h2 class="leave-title">기부글 현황</h2>
+                        <div class="my-data">
+                            <p class="title" th:text="${session.sponsorMember.sponsorName}">서울희망기부단</p>
+                            <ul class="list">
+                                <li>
+                                    <strong>내가 등록한 기부글</strong>
+                                    <span th:text="${sponsorInfo.receiverCount} + '개'">0개</span>
+                                </li>
+                                <li>
+                                    <strong>내가 등록한 기부인증글</strong>
+                                    <span th:text="${sponsorInfo.donateCertCount} + '개'">0개</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <hr class="line" />
+                        <p class="red">탈퇴 회원 유의 사항</p>
+                        <ul class="warn-text">
+                            <li>
+                                탈퇴를 하실 경우, 어떤 경우에도 기존 기부에 대한
+                                복구는 불가능하며, 로그인이 필요한 모든 서비스를
+                                이용하실 수 없습니다.
+                            </li>
+                            <li>
+                                탈퇴 시에도 회원님이 작성하신 도서 기부글,
+                                기부인증을 포함한 모든 게시물은 삭제되지 않습니다.
+                                노출을 원치 않으시면 반드시 미리
+                                삭제하신 후 탈퇴해주세요.
+                            </li>
+                            <li>
+                                이외에 문의사항이 있을 시에 관리자측에 직접 문의
+                                바랍니다.
+                            </li>
+                        </ul>
+                        <div>
+                            <input
+                                type="checkbox"
+                                id="check1"
+                                class="input-check"
+                            />
+                            <label for="check1">
+                                <span
+                                    >회원 탈퇴에 관한 모든 내용을 숙지하였고,
+                                    회원 탈퇴를 신청합니다.</span
+                                >
+                            </label>
+                        </div>
+                        <div class="button-box">
+                            <button type="button" class="gray">
+                                나중에 하기
+                            </button>
+                            <form action="/sponsor/leave/confirm" method="post" style="flex: 1">
+                                <input type="hidden" name="memberId" th:value="${sponsorId}" />
+                                <button type="button" class="yellow disabled" style="width: 100%">계속 진행하기</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </body>
+    <script src="/js/organization/leave-member-event.js"></script>
+</html>

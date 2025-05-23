@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>검색결과 | 북적북적</title>
+        <link
+            rel="stylesheet"
+            href="/css/main/global-settings.css"
+        />
+        <link
+            rel="shortcut icon"
+            href="/images/common/favicon.ico"
+            type="image/x-icon"
+        />
+        <link
+            rel="stylesheet"
+            href="/css/organization/my-donate-post.css"
+        />
+    </head>
+    <body>
+        <div id="wrap">
+            <section class="content">
+                <div class="search-container result">
+                    <!-- 헤더 부분 -->
+                    <div class="back-wrapper">
+                        <div class="styled-back-inner">
+                            <h2 class="title">내가 작성한 도서 기부인증글</h2>
+                        </div>
+                    </div>
+                    <!-- // 헤더 부분 -->
+                    <!-- 검색 결과목록 -->
+                    <div class="search-result-container">
+                        <div class="search-result-data">
+                            <!-- 검색 옵션 -->
+                            <section class="search-options">
+                                <article class="result-list-header">
+                                    <p>
+                                        검색결과
+                                        <span class="result-count" th:text="${donateCertPosts.size()}">0</span>
+                                    </p>
+                                    <div class="filter-wrapper" style="display: none">
+                                        <button
+                                            type="button"
+                                            class="icon-arrow-bottom"
+                                        >
+                                            <span>인기순</span>
+                                        </button>
+                                    </div>
+                                </article>
+                            </section>
+                            <!-- // 검색 옵션 -->
+                            <!-- 기부 대상 검색결과 -->
+                            <div class="search-list">
+                                <div class="slide-container no-swiper">
+                                    <div class="result-list grid">
+                                        <ul class="donate slide-wrapper">
+                                            <li class="slide-item" th:each="post : ${donateCertPosts}">
+                                                <div class="search-donate-list">
+                                                    <a
+                                                        th:href="@{/post/donate/post/{postId}(postId=${post.id})}"
+                                                        class="donate-inner"
+                                                    >
+                                                        <div
+                                                            class="donate-data"
+                                                        >
+                                                            <div class="donate-image"
+                                                                 th:style="'--background-image: url(' +
+                                                                   (${post.donateCertFileName == null}
+                                                                   ? '/images/common/default-donate-image.png'
+                                                                   : '/post/thumbnail?path=' + ${post.donateCertFilePath} + '&name=' + ${post.donateCertFileName}) + ')'">
+                                                            </div>
+                                                            <div
+                                                                class="donate-text"
+                                                            >
+                                                                <span
+                                                                    class="title"
+                                                                    th:text="${post.donateCertTitle}"
+                                                                    >인증글 제목</span
+                                                                >
+                                                                <p
+                                                                    class="content donateType"
+                                                                    th:text="${post.donateCertText}"
+                                                                >
+                                                                    인증글 내용
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // 기부 대상 검색결과 -->
+                        </div>
+                    </div>
+                    <!-- // 검색 결과목록 -->
+                    <!-- 검색 정렬 모달창 -->
+                    <div class="modal-section">
+                        <div class="modal-wrap">
+                            <div class="modal-inner">
+                                <div class="modal-header">
+                                    <strong class="modal-title">정렬</strong>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="radio-body">
+                                        <div>
+                                            <label class="modal-radio checked">
+                                                <input type="radio" />
+                                                <span class="radio-view">
+                                                    <span
+                                                        class="check ir"
+                                                    ></span>
+                                                    <span class="label"
+                                                        >인기순</span
+                                                    >
+                                                </span>
+                                            </label>
+                                            <label class="modal-radio">
+                                                <input type="radio" />
+                                                <span class="radio-view">
+                                                    <span
+                                                        class="check ir"
+                                                    ></span>
+                                                    <span class="label"
+                                                        >업데이트순</span
+                                                    >
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="button-cancel">
+                                    <span>취소</span>
+                                </button>
+                                <button type="button" class="button-primary">
+                                    <span>확인</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- // 검색 정렬 모달창 -->
+                </div>
+            </section>
+        </div>
+    </body>
+    <script src="/js/organization/my-donate-post.js"></script>
+</html>
